@@ -1,0 +1,148 @@
+[user]
+  name  = Elvish Moss
+  email = 123456789+elvishmoss@users.noreply.github.com
+	# signingkey = 1A1B1C1D1E123DF456XYZ
+
+[github]
+  user = elvishmoss
+
+[color]
+  ui     = auto
+  branch = auto
+  diff   = auto
+  status = auto
+
+[core]
+  excludesfile = ~/.gitignore
+  editor       = code -w
+	autocrlf     = input
+  mergeoptions = --no-ff --no-commit
+
+[diff]
+  tool = vscode
+
+[difftool "vscode"]
+  cmd = code --wait --diff $LOCAL $REMOTE
+
+[merge]
+  tool = vscode
+  log  = true
+
+[mergetool "vscode"]
+  cmd = code --wait $MERGED
+
+[apply]
+  # detect whitespace errors when applying a patch
+  whitespace = fix
+
+[alias]
+  # used the most by me
+  aa  = add --all
+  cm  = commit -S -m
+  cma = !git add --all && git commit -S -m
+  co  = checkout
+  rv  = remote -v
+
+  # checkouts
+  cb      = checkout -b
+  cob     = checkout -b
+  ct      = checkout -t
+  cr      = checkout --
+  unstage = reset HEAD
+
+  # submodules
+  sm = "!f() { git submodule update --init --recursive $1; }; f"
+
+  # branch management
+  b  = branch
+  ba = branch -a
+  bd = branch -d
+  bD = branch -D
+  bm = branch -m
+  d  = diff
+  dt = difftool
+  m  = merge
+  mt = mergetool
+  r  = rebase
+  rr = remote rm
+
+  # rebases & squash
+  rb  = rebase
+  rbi = rebase -i
+  rbc = rebase --continue
+  rba = rebase --abort
+  rbs = rebase --skip
+  rf  = reflog
+
+  unstage  = reset HEAD --
+  uncommit = reset --soft HEAD~1
+  undo     = reset --soft HEAD~1
+  delete   = reset --hard HEAD~1
+  trash    = reset --hard HEAD~1
+
+  # squashes
+  sq = "!f() { git rebase -i HEAD~$1; }; f"
+
+  # tags
+  t      = tag -l
+  squash = "!f() { git rebase -i HEAD~$1; }; f"
+
+  # stashes
+  st   = stash
+  stl  = stash list
+  stp  = stash pop
+  sts  = "!f() { git stash show stash@{$1}; }; f"
+  std  = "!f() { git stash show stash@{$1} -U5; }; f"
+  strm = "!f() { git stash drop stash@{$1} -U5; }; f"
+
+  # commits
+  c = commit
+
+  # pushes & pulls
+  f   = fetch --prune
+  p   = push
+  ps  = push
+  pl  = pull
+  pur = pull --rebase
+  pr  = pull-request
+  psf = push --force
+  upm = !git fetch upstream && git merge upstream/master
+
+[push]
+  default    = simple
+  followTags = true
+
+[filter "media"]
+  required = true
+  clean    = git media clean %f
+  smudge   = git media smudge %f
+
+[filter "lfs"]
+	clean    = git-lfs clean -- %f
+	smudge   = git-lfs smudge -- %f
+	required = true
+	process  = git-lfs filter-process
+
+[help]
+  # automatically correct and execute mistyped commands.
+	autocorrect = 1
+
+[gui]
+  commitmsgwidth   = 80
+  pruneduringfetch = true
+  tabsize          = 2
+
+[commit]
+  # gpgsign = true
+
+[suer]
+  # signingkey = 6C9732CDD2C37024
+
+[gpg]
+	program = gpg2
+
+[pull]
+  rebase = false
+
+[init]
+  defaultBranch = main
